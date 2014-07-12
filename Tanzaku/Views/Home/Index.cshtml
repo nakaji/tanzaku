@@ -19,11 +19,15 @@
 {
     <script type="text/javascript">
         function onGenerateClick() {
-            $.ajax("/api/Tanzaku?text=" + $("#text").val())
-                .done(function (data) {
+            $.ajax({
+                    url: "/api/Tanzaku",
+                    data: { text: $("#text").val() }
+                })
+                .done(function(data) {
                     $("#tanzaku").val(data.Text);
                 });
         }
+
         function onTweet() {
             var tanzaku = $("#tanzaku").val();
             var base = "https://twitter.com/intent/tweet?original_referer=" + encodeURIComponent(location.href) + "&text=" + encodeURIComponent(tanzaku) + "&tw_p=tweetbutton&url=" + encodeURIComponent(location.href);
